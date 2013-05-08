@@ -1,0 +1,20 @@
+default:
+  dsn: mysql:dbname=simple_frame;host=192.168.10.56
+  user: root
+  pass: wukehua
+  
+dev:
+  dsn: localhost
+  user: root
+  pass: wukehua
+  
+test:
+  dsn: localhost
+  user: root
+  pass: wukehua
+  options: []
+  
+product:
+  dsn: localhost
+  user: root
+  pass: wukehua

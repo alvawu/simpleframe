@@ -1,0 +1,2 @@
+{$user}, {$greeting}!
+{$fields|@dump}

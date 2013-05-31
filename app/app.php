@@ -59,11 +59,11 @@ class APP
 		foreach( $reflection->getParameters() as $param)
 		{
 			$args[ $param->name ] = null;
-			if( $_GET[ $param->name ] )
+			if( isset($_GET[ $param->name ]) )
 			{
 				$args[ $param->name ] = $_GET[ $param->name ];
 			}
-			if( $_POST[ $param->name ] )
+			if( isset($_POST[ $param->name ]) )
 			{
 				$args[ $param->name ] = $_POST[ $param->name ];
 			}

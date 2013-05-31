@@ -6,7 +6,7 @@ class HelperYamlConfig
 	
 	public static function instance( $file )
 	{
-		if( !self::$instanceList[$file] )
+		if( !isset(self::$instanceList[$file]) )
 		{
 			self::$instanceList[$file] = new self( $file );
 		}
@@ -15,7 +15,19 @@ class HelperYamlConfig
 	
 	private function __construct( $file )
 	{
-		$this->data = Spyc::YAMLLoad( HelperString::formatPath( CONFIG_DIR . '/yaml/' . $file) );
+		$content = file_get_contents(HelperString::formatPath( CONFIG_DIR . '/yaml/' . $file . '.php'));
+		$yamlStr = '';
+		$tokens = token_get_all($content);
+		foreach($tokens as $token)
+		{
+			if(T_COMMENT === $token[0])
+			{
+				$yamlStr .= HelperString::cutBetween( $token[1] , '/*' , '*/');
+			}
+			
+		}
+
+		$this->data = Spyc::YAMLLoad( $yamlStr );
 	}
 	private function __clone() {} 
 	

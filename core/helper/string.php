@@ -30,5 +30,10 @@ class HelperString
 	
 	  	return strripos($haystack, $needle, 0) === $expectedPosition;
 	}
+
+	public static function cutBetween($haystack, $left, $right)
+	{
+		return substr($haystack, strpos($haystack, $left) + strlen($left), strrpos($haystack, $right) - strpos($haystack, $left) - strlen($left)) ;
+	}
 	
 }

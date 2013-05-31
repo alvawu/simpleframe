@@ -25,7 +25,7 @@ class DB
 	{
 		$config = HelperYamlConfig::instance( 'database.yaml' );
 		$dbConfig = $config->variable( $name );
-		
+		$dbConfig['options'] = isset($dbConfig['options'])?$dbConfig['options']:array();
 		$this->pdo = new PDO( $dbConfig['dsn'], $dbConfig['user'], $dbConfig['pass'], $dbConfig['options'] );
 	//	dump($this->pdo);
 	}
@@ -33,7 +33,7 @@ class DB
 	
 	public static function instance( $name = 'default' )
 	{
-		if( !self::$instanceList[$name] )
+		if( !isset( self::$instanceList[$name] ) )
 		{
 			self::$instanceList[$name] = new self( $name );
 		}
